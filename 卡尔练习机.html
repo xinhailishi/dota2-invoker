@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://xinhailishi.cn/kaer.html -->
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>卡尔练习机</title>
+</head>
+<body>
+<h1>dota卡尔钢琴手练习器</h1>
+<h3>操作方式：使用q,w,e，r搓技能</h3>
+<div>
+    <span>当前元素：</span><span id="yuanshuResult"></span>
+</div>
+<div>
+    <span>当前技能：</span><span id="jinengResult"></span>
+</div>
+<script>
+   var yuansuuArry=[];
+   var jinengArry=[];
+   var hechengPeifang={
+       "q,q,q":"急速冷却",
+       "w,w,w":"磁暴",
+       "e,e,e":"天火",
+
+       "q,w,e":"刀片",
+       "w,q,e":"刀片",
+       "e,w,q":"刀片",
+       "w,e,q":"刀片",
+       "q,e,w":"刀片",
+       "e,q,w":"刀片",
+
+       "e,e,w":"毁灭陨石",
+       "e,w,e":"毁灭陨石",
+       "w,e,e":"毁灭陨石",
+
+       "w,w,e":"灵动迅捷",
+       "e,w,w":"灵动迅捷",
+       "w,e,w":"灵动迅捷",
+
+       "w,w,q":"吹风",
+       "w,q,w":"吹风",
+       "q,w,w":"吹风",
+
+       "q,e,e":"召唤火人",
+       "e,q,e":"召唤火人",
+       "e,e,q":"召唤火人",
+
+       "q,q,e":"冰墙",
+       "q,e,q":"冰墙",
+       "e,q,q":"冰墙",
+
+       "q,q,w":"幽灵漫步",
+       "q,w,q":"幽灵漫步",
+       "w,q,q":"幽灵漫步"
+   }
+   var $yre=document.querySelector("#yuanshuResult");
+   var $jre=document.querySelector("#jinengResult");
+    function jiabing(){
+        yuansuuArry.push("q");
+        tihuan();
+    }
+    function jialei(){
+        yuansuuArry.push("w");
+        tihuan();
+    }
+    function jiahuo(){
+        yuansuuArry.push("e");
+        tihuan();
+    }
+    function tihuan(){
+        //替换
+        if(yuansuuArry.length>3){
+            yuansuuArry.shift();
+        }
+        //展示
+        $yre.innerText=yuansuuArry.join();
+    }
+    function run(){
+        var jinengres=hecheng();
+        if(jinengres){
+            if(jinengres==jinengArry[1]||(jinengres==jinengArry[0]&&jinengArry.length==1)){
+                return;
+            }
+            jinengArry.push(jinengres);
+            if(jinengArry.length>2){
+                jinengArry.shift();
+            }
+            //展示
+            $jre.innerText=jinengArry.join();
+        }
+    }
+    function hecheng(){
+        var res=hechengPeifang[yuansuuArry.join()];
+        return res;
+    }
+   document.onkeydown=function(event){
+       //q 81，w 87,e 69,r 82
+       var e = event || window.event || arguments.callee.caller.arguments[0];
+       if(e && e.keyCode==81){
+           jiabing();
+       }
+       if(e && e.keyCode==87){
+           jialei();
+       }
+       if(e && e.keyCode==69){
+           jiahuo();
+       }
+       if (e &&e.keyCode == 82) {
+           run();
+       }
+   };
+</script>
+
+</body></html>
