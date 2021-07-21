@@ -1,6 +1,6 @@
 ## js-dota2 
 使用js实现 dota2 卡尔 invoker 技能组合，并制作成小游戏，支持pc键盘玩和手机触屏玩。欢迎star和fork，欢迎pr出其他英雄技能。
-你的记忆足够好吗？你的手速真的快吗？那来pk下吧 [Link](https://xinhailishi.github.io/dota2-invoker/kaer.html)
+你的记忆足够好吗？你的手速真的快吗？那来pk下吧 [https://xinhailishi.github.io/dota2-invoker/kaer.html](https://xinhailishi.github.io/dota2-invoker/kaer.html)
 
 ### 技能合成秘籍
 
