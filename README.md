@@ -1,37 +1,31 @@
-## Welcome to GitHub Pages
+## js-dota2 
+使用js实现 dota2 卡尔 invoker 技能组合，并制作成小游戏，支持pc键盘玩和手机触屏玩。欢迎star和fork，欢迎pr出其他英雄技能。
+你的记忆足够好吗？你的手速真的快吗？那来pk下吧 [Link](https://xinhailishi.github.io/dota2-invoker/kaer.html)
 
-You can use the [editor on GitHub](https://github.com/xinhailishi/xinhailishi/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+### 技能合成秘籍
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+冰(键盘q键)冰冰==(合成键盘r键)急速冷却(键盘y键)
+冰冰火(键盘e键)==(合成键盘r键)极寒冰墙(键盘g键)
+冰冰雷(键盘w键)=幽灵漫步v
+冰火火=召唤火人f
+冰火雷=高能推波b
+冰雷雷=超速飓风x
+火火火=无敌天火t
+火火雷=毁灭陨石d
+火雷雷=灵动迅捷z
+雷雷雷=磁力爆破c
 
-### Markdown
+### 玩法
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1、底部黄色操作栏内，左侧三个按钮为冰雷火三种元素，点击可以更改底部蓝色操作栏内的当前元素组合， 蓝色操作栏内总是保留你最近更改的三个元素的组合;
 
-```markdown
-Syntax highlighted code block
+2、点击黄色操作栏内右侧按钮，可以把蓝色操作栏内的当前三种元素组合进行合成,会产生一个新技能，合成技能按钮具有冷却时间;
 
-# Header 1
-## Header 2
-### Header 3
+3、新合成的技能会显示在底部红色操作栏内，最多只能保留2个你最近合成的技能；
 
-- Bulleted
-- List
+4、点击红色操作栏内合成的技能，可以释放出效果，让红色进度条加快增长或者让蓝色进度条减慢增长，释放的技能具有冷却时间;
 
-1. Numbered
-2. List
+5、迅速切换元素，合成技能，释放技能，控制红色进度条先达到满格，就可以胜利。你行吗？
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/xinhailishi/xinhailishi/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
