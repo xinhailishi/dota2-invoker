@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://xinhailishi.cn/kaer.html -->
+<html>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style>
+        html,
+        body {
+            background: #cef4fc;
+            margin: 0;
+            padding: 0;
+        }
+        p{
+            margin: 5px;
+        }
+        .gameOver{
+            position: absolute;
+            background-color: black;
+            z-index: 5;
+            height: 100%;
+            width: 100%;
+            color: #fff;
+            font-size: 60px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            display: none;
+        }
+        .rePlay{
+            color: #fff;
+            border-radius: 37px;
+            background-color: #4269c2;
+            height: 94px;
+            line-height: 94px;
+            width: 100%;
+        }
+        .stage {
+            background-color: black;
+            height: 300px;
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .xueWrap {
+            text-align: center;
+            font-size: 0;
+            height: 30px;
+            line-height: 30px;
+            position: absolute;
+            width: 100%;
+            top: 35px;
+        }
+        
+        .pk {
+            display: inline-block;
+            font-size: 30px;
+            color: #fff;
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+        }
+        
+        .xuetiao {
+            /* border-radius: 15px; */
+            height: 100px;
+            width: 95%;
+            margin: 0 auto;
+            background-color: #e1d2d2;
+        }
+        
+        .yuxue {
+            /* border-radius: 15px; */
+            background-color: #e91111;
+            height: 100px;
+            width: 00%;
+        }
+        
+        .xuetiao1 {
+            /* border-radius: 15px; */
+            height: 100px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #e1d2d2;
+            width: 95%;
+        }
+        
+        .yuxue1 {
+            /* border-radius: 15px; */
+            background-color: #4269c2;
+            height: 100px;
+            width: 00%;
+            float: left;
+        }
+        
+        .zidan {
+            background: url(img/zidan.png) no-repeat;
+            background-size: 100%;
+            width: 100px;
+            height: 25px;
+            position: absolute;
+            top: 150px;
+            left: 275px;
+        }
+        
+        .zidan.fan {
+            right: 170px;
+            left: auto;
+            top: 160px;
+            transform: rotate(178deg);
+        }
+        
+        .dashou {
+            background: url(img/dashou.gif) no-repeat;
+            background-size: 100%;
+            width: 272px;
+            height: 80px;
+            position: absolute;
+            top: 125px;
+            left: 0px;
+        }
+        
+        .muou {
+            background: url(img/muou.gif) no-repeat;
+            background-size: 100%;
+            width: 160px;
+            height: 130px;
+            position: absolute;
+            top: 100px;
+            right: 0;
+            transform: rotate(540deg);
+        }
+        
+        .w {
+            /* background: -webkit-radial-gradient(center center, circle, #8321e0, #2513c7, #f3eff3, #fff);
+            background: radial-gradient(center center, circle, #8321e0, #2513c7, #f3eff3, #fff); */
+            background: url(img/lei.png);
+            background-size: 100%;
+        }
+        
+        .q {
+            background: url(img/bing.png);
+            background-size: 100%;
+        }
+        
+        .e {
+            background: url(img/huo.png);
+            background-size: 100%;
+        }
+        
+        .yuanshu {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 3px;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+        }
+        
+        .kongy {
+            /* border: 1px solid green; */
+            background-color: #e4eaec;
+        }
+        
+        .yuanshuResult {
+            background-color: #4269c2;
+            font-size: 0;
+            height: 25px;
+            line-height: 25px;
+            text-align: left;
+            margin: 0 auto;
+            position: fixed;
+            bottom: 115px;
+            padding-left: 5px;
+            left: 0;
+            width: 100%;
+        }
+        
+        .jinengResult {
+            bottom: 0; 
+            background-color: rgba(233, 17, 17, 0.5);
+            font-size: 0;
+            height: 50px;
+            line-height: 50px;
+            text-align: left;
+            margin: 0 auto;
+            position: fixed;
+            bottom: 65px;
+            padding-left: 5px;
+            width: 100%;
+        }
+        
+        .jineng {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .jineng.r {
+            background: url(img/r.png);
+            background-size: 100%;
+        }
+        
+        .jineng.z {
+            background: url(img/z.png);
+            background-size: 100%;
+        }
+        
+        .jineng.c {
+            background: url(img/c.png);
+            background-size: 100%;
+        }
+        
+        .jineng.y {
+            background: url(img/y.png);
+            background-size: 100%;
+        }
+        
+        .jineng.t {
+            background: url(img/t.png);
+            background-size: 100%;
+        }
+        
+        .jineng.d {
+            background: url(img/d.png);
+            background-size: 100%;
+        }
+        
+        .jineng.x {
+            background: url(img/x.png);
+            background-size: 100%;
+        }
+        
+        .jineng.v {
+            background: url(img/v.png);
+            background-size: 100%;
+        }
+        
+        .jineng.f {
+            background: url(img/f.png);
+            background-size: 100%;
+        }
+        
+        .jineng.g {
+            background: url(img/g.png);
+            background-size: 100%;
+        }
+        
+        .jineng.b {
+            background: url(img/b.png);
+            background-size: 100%;
+        }
+        
+        .dongJineng {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .btnWrap{
+            position: fixed;
+            bottom: 16px;
+            height: 46px;
+            padding-top: 3px;
+            width: 100%;
+            background-color: yellow;
+            line-height: 0;
+        }
+        .btnWrap .btn{
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        .btnWrap .btn.q{
+            background: url(img/bing.png);
+            background-size: 100%;
+        }
+        .btnWrap .btn.w{
+            background: url(img/lei.png);
+            background-size: 100%;
+        }
+        .btnWrap .btn.e{
+            background: url(img/huo.png);
+            background-size: 100%;
+        }
+        .btnWrap .btn.r{
+            background: url(img/r.png);
+            background-size: 100%;
+            float: right;
+            margin-right: 20px;
+        }
+        .tipBtn{
+            color: #fff;
+            font-size: 13px;
+            background: #4269c2;
+            height: 26px;
+            width: 70px;
+            line-height: 26px;
+            text-align: center;
+            border-radius: 13px;
+            position: absolute;
+            top: 5px;
+        }
+        .tipBtn.wanfa{
+            left: 0;
+        }
+        .tipBtn.jinengTip{
+            right: 0;
+        }
+        .rule{
+            color: black;
+            font-size: 16px;
+            background-color: #fff;
+            position: absolute;
+            width: 300px;
+            height: 330px;
+            top: 15%;
+            left: 50%;
+            margin-left: -150px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+        .rule .ruleContent{
+            color: black;
+            padding: 30px 20px;
+            text-align: left;
+            overflow: scroll;
+            height: 215px;
+        }
+        .close{
+            color: #fff;
+            border-radius: 15px;
+            background-color: #4269c2;
+            height: 26px;
+            line-height: 26px;
+            width: 90px;
+            font-size: 14px;
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -45px;
+        }
+        .showWrap{
+            color: #fff;
+            font-size: 45px;
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            top: 330px;
+        }
+        .cdCover{
+            /* display: none; */
+            background:red;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .shuangfang{
+            font-size: 30px;
+            color: #fff;
+            margin: 4px 0;
+            font-weight: bold;
+        }
+        .shuangfang.blue{
+            color:blue;
+        }
+        .shuangfang.red{
+            color:red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1>战斗</h1>
+    <h3>操作方式：使用q,w,e，r搓技能</h3> -->
+    
+    <div class="stage">
+        <!-- <div class="zidan"></div>
+        <div class="zidan fan"></div> -->
+        <!-- <div class="dashou" id='dashou'></div>
+        <div class="muou"></div> -->
+        <div id="gameOver" class="gameOver" >
+                <div id="overTip">YOU WIN！</div>
+                <div id="rePlay" class="rePlay">重玩</div>
+            </div>
+        <div class="tipBtn wanfa">玩法介绍</div>
+        <div class="pk">搓搓乐</div>
+        <div class="tipBtn jinengTip">技能秘方</div>
+        <div class="rule">
+                <div class="ruleContent">
+                        <p style="font-weight: bold;">你的记忆足够好吗？你的手速真的快吗？那来pk下吧</p>
+                    <p style="font-weight: bold;">一、技能合成秘籍</p>
+                    <ul>
+                        <li>冰(键盘q键)冰冰==(合成键盘r键)急速冷却(键盘y键)</li>
+                        <li>冰冰火(键盘e键)==(合成键盘r键)极寒冰墙(键盘g键)</li> 
+                        <li>冰冰雷(键盘w键)=幽灵漫步v</li>
+                        <li>冰火火=召唤火人f</li>
+                        <li>冰火雷=高能推波b</li>
+                        <li>冰雷雷=超速飓风x</li>
+                        <li>火火火=无敌天火t</li>
+                        <li>火火雷=毁灭陨石d</li>
+                        <li>火雷雷=灵动迅捷z</li>   
+                        <li>雷雷雷=磁力爆破c</li>           
+                    </ul>
+                    <br>
+                    <p style="font-weight: bold;">二、玩法</p>
+                    <p>1、底部黄色操作栏内，左侧三个按钮为冰雷火三种元素，点击可以更改底部蓝色操作栏内的当前元素组合，
+                        蓝色操作栏内总是保留你最近更改的三个元素的组合;</p>
+                    <p>2、点击黄色操作栏内右侧按钮，可以把蓝色操作栏内的当前三种元素组合进行合成,会产生一个新技能，合成技能按钮具有冷却时间;</p>
+                    <p>3、新合成的技能会显示在底部红色操作栏内，最多只能保留2个你最近合成的技能；</p>
+                    <p>4、点击红色操作栏内合成的技能，可以释放出效果，让红色进度条加快增长或者让蓝色进度条减慢增长，释放的技能具有冷却时间;</p>
+                    <p>5、迅速切换元素，合成技能，释放技能，控制红色进度条先达到满格，就可以胜利。你行吗？</p>   
+                </div>
+                <div class="close">开始游戏</div>
+        </div>
+        <div class="xueWrap">
+            <div class="shuangfang blue">对方(蓝方)</div>
+            <div class="xuetiao1">
+                <div class="yuxue1"></div>
+            </div>
+            <div class="shuangfang red">我(红方)</div>
+            <div class="xuetiao">
+                <div class="yuxue"></div>
+            </div>
+        </div>
+
+        <div class="showWrap" id="showWrap">
+
+            </div>   
+    </div>
+    <div>
+        <div id="yuanshuResult" class="yuanshuResult">
+            <div class="yuanshu kongy"></div>
+            <div class="yuanshu kongy"></div>
+            <div class="yuanshu kongy"></div>
+        </div>
+    </div>
+    <div id="btnWrap" class="btnWrap">
+        <div class="btn q" id="qBtn"></div>
+        <div class="btn w" id="wBtn"></div>
+        <div class="btn e" id="eBtn"></div>
+        <div class="btn r" id="rBtn"><div id="runCover" class="cdCover" style="opacity:0"></div></div>
+    </div>
+    <div>
+        <div id="jinengResult" class="jinengResult">
+            <div class='dongJineng'>
+                <div class="jineng x"></div>
+                <div class="jineng z"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="containner" style="display: none;">
+        <div class="yuanshu w"></div>
+        <div class="yuanshu q"></div>
+        <div class="yuanshu e"></div>
+
+        <div class="jineng z"></div>
+    </div>
+   
+    <script>
+        /* 响应式 */
+        (function(){
+            function w() {
+                var r = document.documentElement;
+                var a = r.getBoundingClientRect().width;
+                if (a > 1080 ){
+                    a = 1080;
+                } 
+                //750/w = 100/font-size
+                rem = a / 10.8;
+                r.style.fontSize = rem + "px";
+                r.style.fontFamily="微软雅黑"
+            }
+            var t;
+            w();
+            window.addEventListener("resize", function() {
+                clearTimeout(t);
+                t = setTimeout(w, 300)
+            }, false);
+        })();
+        /* 舞台初始化 */
+        (function(){
+            var s=document.querySelector(".stage");
+            s.style.height=window.innerHeight+"px";
+        })();
+  
+        var NOW = {};
+        var goEffect={};
+         /* 技能释放 */
+         goEffect=(function() {
+                /* 初始数据 */
+            var defaultConfig={
+                    redCount:1,
+                    blueCount:1,
+                    redAdd:0.1,
+                    redV:500,
+                    blueV:500,
+                    blueAdd:0.1
+                };
+                var isIng=false;
+            var jinengConfig={
+                z:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "z",
+                    name:"灵动迅捷",
+                    tag:"redV",
+                    time: 3000,
+                    redV: 200 
+                  },
+                  x:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "x",
+                    name:"吹风",
+                    tag:"blueV",
+                    redAdd: 0.2,
+                    blueAdd: 0.05,
+                    time: 3000,
+                    blueV: 1000,
+                    redV: 200 
+                  },y:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "y",
+                    name:"急速冷却",
+                    tag:"blueV",
+                    time: 5000,
+                    blueV: 1000
+                  },d:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "d",
+                    name:"陨石",
+                    tag:"redAdd",
+                    redAdd: 1,
+                    time: 2000
+                 
+                  },t:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "t",
+                    name:"天火",
+                    tag:"blueAdd",
+                    blueAdd: 0.01,
+                    time: 2000
+                  },b:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "b",
+                    name:"推波",
+                    tag:"blueAdd",
+                    blueAdd: 0.02,
+                    time: 6000
+                   
+                  },c:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "c",
+                    name:"磁暴",
+                    tag:"blueV",
+                    time: 3000,
+                    blueV: 2000
+                  },f:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "f",
+                    name:"火人",
+                    tag:"redAdd",
+                    redAdd: 0.3,
+                    time: 2000,
+                  },v:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "v",
+                    name:"幽灵漫步",
+                    tag:"redV",
+                    time: 8000,
+                    redV: 100 
+                  },g:{
+                    cd: 15000,
+                    isCd:false,
+                    last: "1565081773311",
+                    id: "g",
+                    name:"冰墙",
+                    tag:"blueAdd",
+                    blueAdd: 0.05,
+                    time: 4000
+                  }
+            }
+            var $showWrap=document.getElementById('showWrap');
+            function jineng(option) {
+                for(i in option){
+                    // console.log(i);
+                    this[i]=option[i];
+                }
+                this.shi();
+            }
+            jineng.prototype={
+                shi: function() {
+                    if(isIng){
+                        return;
+                    }
+                    var _this=this;
+                    var nowTime=(new Date()).getTime();
+                    if((nowTime-this.last)>this.cd){
+                        this.last=nowTime;
+                        //持续时间
+                        this.doXue();
+                        _this.isCd=true;
+                        _this.op=1;
+                        _this.cdRefresh(_this.op);
+                        //cd时间
+                        var beilv=1/(_this.cd/1000);
+                        this.cdInter=setInterval(function(){
+                            _this.op-=beilv;
+                            _this.cdRefresh(_this.op);
+                            if(_this.op<0.1){
+                                _this.cdRefresh(0);
+                            }
+                          },1000)
+                        this.cder=setTimeout(function(){
+                            _this.isCd=false;
+                            clearInterval(_this.cdInter);
+                        },this.cd);
+                    }
+                   
+                },
+                doXue:function(){
+                    var _this=this;
+                    var dd=defaultConfig[(this['tag'])];
+                    xueConfig.config[(this['tag'])]=this[(this['tag'])];
+                    isIng=true;
+                    setTimeout(function(){
+                        xueConfig.config[(_this['tag'])]=dd;
+                        isIng=false;
+                    },this.time);
+
+                    var good=this.time/1000;
+                    $showWrap.innerText=_this.name+good+"秒";
+                    var tipser=setInterval(function(){
+                        good--;
+                        $showWrap.innerText=_this.name+good+"秒";
+                        if(good<1){
+                            clearInterval(tipser);
+                            $showWrap.innerText="";
+                        }
+                    },1000);
+                },
+                cdRefresh:function(op){
+                    if(!document.querySelector(".jineng."+this.id+" .cdCover")){
+                        return;
+                    }
+                    document.querySelector(".jineng."+this.id+" .cdCover").style.opacity=op;
+                }
+            }
+           
+            var effectInstance={};
+            function showEffect(par){
+                if(effectInstance[par]){
+                    return effectInstance[par].shi();
+                }
+                effectInstance[par] = new jineng(jinengConfig[par]);
+            return true;
+            }
+            function isCd(jn){
+                return effectInstance[jn]?effectInstance[jn].op:0;
+            }
+           return {
+            showEffect:showEffect,
+            isCd:isCd,
+            effectInstance:effectInstance
+           }
+        })();
+        
+        /* 技能配置 */
+        var doConfig=(function(nowState,goC) {
+            var yuansuuArry = [];
+            var jinengArry = [];
+            var hechengPeifang = {
+                "q,q,q": "y",
+                "w,w,w": "c",
+                "e,e,e": "t",
+
+                "q,w,e": "b",
+                "w,q,e": "b",
+                "e,w,q": "b",
+                "w,e,q": "b",
+                "q,e,w": "b",
+                "e,q,w": "b",
+
+                "e,e,w": "d",
+                "e,w,e": "d",
+                "w,e,e": "d",
+
+                "w,w,e": "z",
+                "e,w,w": "z",
+                "w,e,w": "z",
+
+                "w,w,q": "x",
+                "w,q,w": "x",
+                "q,w,w": "x",
+
+                "q,e,e": "f",
+                "e,q,e": "f",
+                "e,e,q": "f",
+
+                "q,q,e": "g",
+                "q,e,q": "g",
+                "e,q,q": "g",
+
+                "q,q,w": "v",
+                "q,w,q": "v",
+                "w,q,q": "v"
+            }
+            var $yre = document.querySelector("#yuanshuResult");
+            var $jre = document.querySelector("#jinengResult");
+
+            function jiabing() {
+                yuansuuArry.unshift("q");
+                tihuan();
+                return doConfig;
+            }
+
+            function jialei() {
+                yuansuuArry.unshift("w");
+                tihuan();
+                return doConfig;
+            }
+
+            function jiahuo() {
+                yuansuuArry.unshift("e");
+                tihuan();
+                return doConfig;
+            }
+
+            function tihuan() {
+                //替换
+                if (yuansuuArry.length > 3) {
+                    yuansuuArry.pop();
+                }
+                //展示
+
+                $yre.innerHTML = renderYuanShu(yuansuuArry);
+            }
+
+            function renderYuanShu(array) {
+                var resHtml = "";
+                array.forEach(function(ele, index) {
+                    resHtml += '<div class="yuanshu ' + ele + '"></div>';
+                });
+                return resHtml;
+            }
+            var runCd=false;
+            var $runCover=document.getElementById("runCover");
+            function run() {
+                if(runCd){
+                    return;
+                }
+                runCd=true;
+                var op=1;
+                $runCover.style.opacity=op;
+                var dd=setInterval(function(){
+                    op-=0.2;
+                    runCover.style.opacity=op;
+                    if(op<0.2){
+                        runCd=false;
+                        runCover.style.opacity=0;
+                        clearInterval(dd);
+                    }
+                },500)
+                var jinengres = hecheng();
+                if (jinengres) {
+                    if (jinengres == jinengArry[0] || (jinengres == jinengArry[0] && jinengArry.length == 1)) {
+                        return;
+                    }
+                    jinengArry.unshift(jinengres);
+                    if (jinengArry.length > 2) {
+                        jinengArry.pop();
+                    }
+                    //展示
+                    $jre.innerHTML = renderJiNeng(jinengArry);
+                    return doConfig;
+                }
+            }
+
+            function renderJiNeng(array) {
+                var resHtml = "";
+                array.forEach(function(ele, index) {
+                    var isCd=goC.isCd(ele);
+                    var show="style='opacity:"+isCd+"'";
+                    resHtml += '<div onclick="goEffect.showEffect(\''+ele+'\');" class="jineng ' + ele + '"><div class="cdCover"' +show+'></div></div>';
+                });
+                return resHtml;
+            }
+
+            function hecheng() {
+                var res = hechengPeifang[yuansuuArry.join()];
+                return res;
+            }
+            function getNowState(){
+                return jinengArry;
+            }
+            return {
+                q:jiabing,
+                w:jialei,
+                e:jiahuo,
+                r:run,
+                jinengArry:getNowState
+            }
+        })(NOW,goEffect);
+
+       
+        /* 操作控制 */
+        (function(doC,goE){
+            var $rule=document.querySelector('.rule');
+            var $tipBtn=document.querySelectorAll('.tipBtn');
+            $tipBtn.forEach(function(ele,index){
+                ele.addEventListener("click",function(){
+                $rule.style.display="block"
+                },false);
+            });
+               
+            
+            document.querySelector('#rePlay').addEventListener("click",function(){
+                   window.location.reload();
+                },false);
+            document.querySelector('.close').addEventListener("click",function(){
+                    $rule.style.display="none";
+                    if(!xueConfig.init){
+                        xueConfig=xueConfigFun();
+                    }
+                },false);
+
+            document.onkeydown = function(event) {
+                //q 81，w 87,e 69,r 82
+                var e = event || window.event || arguments.callee.caller.arguments[0];
+                if (e && e.keyCode == 81) {
+                    doC.q();
+                    return;
+                }
+                if (e && e.keyCode == 87) {
+                    doC.w();
+                    return;
+                }
+                if (e && e.keyCode == 69) {
+                    doC.e();
+                    return;
+                }
+                if (e && e.keyCode == 82) {
+                    doC.r();
+                    return;
+                }
+                /* 技能按键 
+                b 66,c 67,d 68,f 70,g 71,t 84,v 86,x 88,y 89,z 90
+                 */
+                var keyConfig={
+                    66:"b",
+                    67:"c",
+                    68:"d",
+                    70:"f",
+                    71:"g",
+                    84:"t",
+                    86:"v",
+                    88:"x",
+                    89:"y",
+                    90:"z"
+                };
+                var configA=[66,67,68,70,71,84,86,88,89,90];
+                configA.forEach(function(ele,inx){
+                    if (e && e.keyCode == ele) {
+                    if((doC.jinengArry()).indexOf(keyConfig[ele])>-1){
+                        console.info(ele,inx);
+                        goE.showEffect(keyConfig[ele]);
+                        return;
+                    }
+                }
+                })
+            };
+            var $btns=document.querySelectorAll(".btnWrap .btn");
+            $btns.forEach(function(item,index){
+                item.addEventListener("click",function(){
+                    doC[this.classList[1]]();
+                },false);
+            });
+            //初始化
+            doC.q().q().q().r();
+            doC.w().e().q().r();
+        })(doConfig,goEffect);
+        /* 效果处理 */
+        var xueConfig={init:false};
+        var xueConfigFun=(function() {
+            var $red=document.querySelector(".yuxue");
+            var $blue=document.querySelector(".yuxue1");
+            var config={
+                redCount:1,
+                blueCount:1,
+                redAdd:0.1,
+                redV:500,
+                blueV:500,
+                blueAdd:0.1
+            }
+            var dd=setInterval(function() {
+                config.redCount+=config.redAdd;
+                $red.style.width=config.redCount+"%";
+                if(config.redCount>100){
+                    clearInterval(dd);
+                    clearInterval(ff);
+                    document.getElementById("gameOver").style.display="block";
+                    document.getElementById("overTip").innerText="YOU WIN";
+                }
+            }, config.redV);
+            var ff=setInterval(function() {
+                config.blueCount+=(config.blueAdd+parseFloat(Math.random().toFixed(1))/10);
+                $blue.style.width=config.blueCount+"%";
+                if(config.blueCount>100){
+                    clearInterval(dd);
+                    clearInterval(ff);
+                    document.getElementById("gameOver").style.display="block";
+                    document.getElementById("overTip").innerText="YOU LOSE";
+                }
+            }, config.blueV);
+            return {
+                config:config,
+                init:true
+            }
+        });
+     
+   
+   </script>
+
+</body>
+
+</html>
